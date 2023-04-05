@@ -24,7 +24,7 @@ public class ModeratorController {
     private ApplicationService applicationService;
 
     //Просматривать все отправленные на рассмотрение  заявки
-    @GetMapping()
+    @GetMapping(value = "/")
     public List<Application> getAllApplications(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size, @RequestParam(defaultValue = "date,asc") String[] sort) {
         return applicationService.getAllApplications(page, size, sort, MessageStatus.fromString("Sent"));
     }

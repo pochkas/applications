@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Controller
+@RestController
 @RequestMapping("/admin")
 public class AdminController {
 
@@ -30,13 +30,13 @@ public class AdminController {
 
     //искать конкретного пользователя по его имени
     @GetMapping(value = "/{username}")
-    public User getByName(@PathVariable("username") String username, Model model) {
+    public User getByName(@PathVariable String username) {
         return userServiceImpl.getByName(username);
     }
 
     //искать конкретного пользователя по части имени
     @GetMapping(value = "/byPrefix/{prefix}")
-    public List<User> getByStartName(@PathVariable("prefix") String prefix, Model model) {
+    public List<User> getByStartName(@PathVariable String prefix) {
         return userServiceImpl.getByStartName(prefix);
     }
 
