@@ -21,7 +21,8 @@ import java.util.stream.Collectors;
 @Service
 public class UserServiceImpl implements UserService {
 
-
+    @PersistenceContext
+    private EntityManager em;
     @Autowired
     UserRepository userRepository;
     @Autowired
@@ -36,7 +37,6 @@ public class UserServiceImpl implements UserService {
             return false;
         }
 
-        user.setRoles(Collections.singleton(new Role(1L, RoleName.ADMIN)));
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return true;
@@ -49,6 +49,7 @@ public class UserServiceImpl implements UserService {
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
+
         return user;
     }
 

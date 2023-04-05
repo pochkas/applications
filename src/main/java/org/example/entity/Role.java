@@ -17,8 +17,6 @@ public class Role implements GrantedAuthority {
     @Transient
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;
-    @ManyToMany
-    private Set<Privilege> privileges;
 
     public Role() {
 
@@ -68,7 +66,7 @@ public class Role implements GrantedAuthority {
                 "id=" + id +
                 ", name=" + name +
                 ", users=" + users +
-                ", privileges=" + privileges +
+                 +
                 '}';
     }
 
@@ -77,11 +75,11 @@ public class Role implements GrantedAuthority {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Role role = (Role) o;
-        return Objects.equals(id, role.id) && name == role.name && Objects.equals(users, role.users) && Objects.equals(privileges, role.privileges);
+        return Objects.equals(id, role.id) && name == role.name && Objects.equals(users, role.users) ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, users, privileges);
+        return Objects.hash(id, name, users);
     }
 }

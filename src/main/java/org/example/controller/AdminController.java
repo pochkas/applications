@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Set;
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
 
     @Autowired
@@ -21,26 +22,26 @@ public class AdminController {
 
 
     //смотреть список пользователей
-    @GetMapping("/admin")
+    @GetMapping(value ="/")
     public List<User> userList(Model model) {
         model.addAttribute("allUsers", userServiceImpl.getAll());
         return userServiceImpl.getAll();
     }
 
     //искать конкретного пользователя по его имени
-    @GetMapping("/admin/{username}")
+    @GetMapping(value = "/{username}")
     public User getByName(@PathVariable("username") String username, Model model) {
         return userServiceImpl.getByName(username);
     }
 
     //искать конкретного пользователя по части имени
-    @GetMapping("/admin/{prefix}")
+    @GetMapping(value = "/byPrefix/{prefix}")
     public List<User> getByStartName(@PathVariable("prefix") String prefix, Model model) {
         return userServiceImpl.getByStartName(prefix);
     }
 
     //назначать пользователям права оператора
-    @PatchMapping("/admin/{username}/update")
+    @PatchMapping(value ="/{username}/update")
     public void updateUserPermission(@PathVariable String username) {
         userServiceImpl.updatePermission(username);
 

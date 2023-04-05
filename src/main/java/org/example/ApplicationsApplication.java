@@ -9,11 +9,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
 @SpringBootApplication
-public class ApplicationsApplication implements CommandLineRunner {
+public class ApplicationsApplication  implements CommandLineRunner{
 
     @Autowired
     UserServiceImpl userServiceImpl;
@@ -34,22 +35,50 @@ public class ApplicationsApplication implements CommandLineRunner {
         User user1 = new User();
         Set<Role> roles = new HashSet<>();
         roles.add(roleuser);
-        user1.setUsername("1");
+        user1.setUsername("user");
         user1.setRoles(roles);
         user1.setId(1L);
-        user1.setPassword("1");
+        user1.setPassword("user");
+        user1.setRoles(Collections.singleton(new Role(1L, RoleName.USER)));
+
         userServiceImpl.saveUser(user1);
 
         Role roleuser2 = new Role(2L, RoleName.ADMIN);
         roleRepository.save(roleuser2);
         User user2 = new User();
         Set<Role> roles2 = new HashSet<>();
-        roles.add(roleuser2);
-        user1.setUsername("2");
-        user1.setRoles(roles2);
-        user1.setId(2L);
-        user1.setPassword("2");
+        roles2.add(roleuser2);
+        user2.setUsername("admin");
+        user2.setRoles(roles2);
+        user2.setId(2L);
+        user2.setPassword("admin");
+        user2.setRoles(Collections.singleton(new Role(2L, RoleName.ADMIN)));
         userServiceImpl.saveUser(user2);
+
+        Role roleuser3 = new Role(3L, RoleName.MODERATOR);
+        roleRepository.save(roleuser3);
+        User user3 = new User();
+        Set<Role> roles3 = new HashSet<>();
+        roles3.add(roleuser3);
+        user3.setUsername("moderator");
+        user3.setRoles(roles3);
+        user3.setId(3L);
+        user3.setPassword("moderator");
+        user3.setRoles(Collections.singleton(new Role(3L, RoleName.MODERATOR)));
+        userServiceImpl.saveUser(user3);
+
+        Role roleuser4 = new Role(4L, RoleName.MODERATOR);
+        roleRepository.save(roleuser3);
+        User user4 = new User();
+        Set<Role> roles4 = new HashSet<>();
+        roles4.add(roleuser4);
+        user4.setUsername("new");
+        user4.setRoles(roles4);
+        user4.setId(4L);
+        user4.setPassword("new");
+
+        user4.setRoles(Collections.singleton(new Role(3L, RoleName.MODERATOR)));
+        userServiceImpl.saveUser(user4);
 
     }
 }
