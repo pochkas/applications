@@ -16,8 +16,5 @@ public interface UserService extends UserDetailsService {
 
     public List<User> getAll();
 
-    public User findUserById(Long id);
-
     public void updatePermission(String username);
-
 }

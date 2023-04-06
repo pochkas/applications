@@ -7,25 +7,15 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class ApplicationCreationDTO {
-
-
     private String message;
 
-
-
-    public ApplicationCreationDTO(String message, LocalDateTime dateTime) {
+    public ApplicationCreationDTO(String message) {
         this.message = message;
-
     }
 
     public String getMessage() {
         return message;
     }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
 
     @Override
     public boolean equals(Object o) {
@@ -48,6 +38,4 @@ public class ApplicationCreationDTO {
     public Application toApplication(String username) {
         return new Application(username, getMessage(), MessageStatus.DRAFT, LocalDateTime.now());
     }
-
-
 }

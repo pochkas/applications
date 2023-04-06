@@ -9,11 +9,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 import java.util.*;
 
 @SpringBootApplication
 public class ApplicationsApplication  implements CommandLineRunner{
-
     @Autowired
     UserServiceImpl userServiceImpl;
 
@@ -23,10 +23,8 @@ public class ApplicationsApplication  implements CommandLineRunner{
     public static void main(String[] args) {
         SpringApplication.run(ApplicationsApplication.class, args);
     }
-
     @Override
     public void run(String... args) throws Exception {
-
 
         Role roleuser = new Role(1L, RoleName.USER);
         roleRepository.save(roleuser);
@@ -37,8 +35,6 @@ public class ApplicationsApplication  implements CommandLineRunner{
         user1.setRoles(roles);
         user1.setId(1L);
         user1.setPassword("user");
-        user1.setRoles(Collections.singleton(new Role(1L, RoleName.USER)));
-
         userServiceImpl.saveUser(user1);
 
         Role roleuser2 = new Role(2L, RoleName.ADMIN);
@@ -50,7 +46,6 @@ public class ApplicationsApplication  implements CommandLineRunner{
         user2.setRoles(roles2);
         user2.setId(2L);
         user2.setPassword("admin");
-       // user2.setRoles(Collections.singleton(new Role(2L, RoleName.ADMIN)));
         userServiceImpl.saveUser(user2);
 
         Role roleuser3 = new Role(3L, RoleName.MODERATOR);
@@ -62,7 +57,6 @@ public class ApplicationsApplication  implements CommandLineRunner{
         user3.setRoles(roles3);
         user3.setId(3L);
         user3.setPassword("moderator");
-        //user3.setRoles(Collections.singleton(new Role(3L, RoleName.MODERATOR)));
         userServiceImpl.saveUser(user3);
 
         Role roleuser4 = new Role(4L, RoleName.MODERATOR);
@@ -70,15 +64,23 @@ public class ApplicationsApplication  implements CommandLineRunner{
         User user4 = new User();
         HashSet<Role> roles4 = new HashSet<>();
         roles4.add(roleuser4);
-        roles4.add(roleuser2);
-
+        roles4.add(roleuser4);
         user4.setUsername("new");
         user4.setRoles(roles4);
         user4.setId(4L);
         user4.setPassword("new");
-
-
         userServiceImpl.saveUser(user4);
 
+        Role roleuser5 = new Role(5L, RoleName.USER);
+        roleRepository.save(roleuser5);
+        User user5 = new User();
+        HashSet<Role> roles5 = new HashSet<>();
+        roles5.add(roleuser5);
+        roles5.add(roleuser5);
+        user5.setUsername("user2");
+        user5.setRoles(roles5);
+        user5.setId(5L);
+        user5.setPassword("user2");
+        userServiceImpl.saveUser(user5);
     }
 }

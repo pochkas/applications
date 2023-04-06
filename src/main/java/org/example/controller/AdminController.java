@@ -18,9 +18,8 @@ public class AdminController {
     @Autowired
     private UserServiceImpl userServiceImpl;
 
-
     //смотреть список пользователей
-    @GetMapping(value ="/")
+    @GetMapping(value = "/")
     public List<User> userList(Model model) {
         model.addAttribute("allUsers", userServiceImpl.getAll());
         return userServiceImpl.getAll();
@@ -39,9 +38,8 @@ public class AdminController {
     }
 
     //назначать пользователям права оператора
-    @PatchMapping(value ="/{username}/update")
+    @PatchMapping(value = "/update/{username}")
     public void updateUserPermission(@PathVariable String username) {
         userServiceImpl.updatePermission(username);
-
     }
 }

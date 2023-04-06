@@ -10,10 +10,11 @@ import java.util.List;
 
 public interface ApplicationRepository extends JpaRepository<Application, Long> {
 
+    List<Application> findByUsername(String username, Pageable pageable);
 
-    List<Application> findByStatusAndUsername(String username, MessageStatus messageStatus, Pageable pageable);
+    List<Application> findByUsernameAndStatus(String username, MessageStatus messageStatus, Pageable pageable);
 
-    List<Application> findByStatusAndUsernameStartsWith(String prefix, MessageStatus messageStatus, Pageable pageable);
+    List<Application> findByUsernameStartsWithAndStatus(String prefix, MessageStatus messageStatus, Pageable pageable);
 
     List<Application> findByStatus(MessageStatus status, Pageable pageable);
 
@@ -26,5 +27,4 @@ public interface ApplicationRepository extends JpaRepository<Application, Long> 
     @Override
     Page<Application> findAll(Pageable pageable);
 
-    Application findApplicationByStatus(MessageStatus messageStatus);
 }

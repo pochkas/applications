@@ -1,14 +1,10 @@
 package org.example;
 
 public enum MessageStatus {
-
     DRAFT("draft"),
     SENT("sent"),
     ACCEPTED("accepted"),
     REJECTED("rejected");
-
-
-
     private String text;
 
     MessageStatus(String text) {
@@ -27,5 +23,4 @@ public enum MessageStatus {
         }
         return null;
     }
-
 }

@@ -10,22 +10,9 @@ public interface ApplicationService {
 
     public Application addApplication(Application application);
 
-    public List<Application> getAllApplications(int page, int size, String[] sort, MessageStatus messageStatus);
-    public List<Application> getAllUserApplications(String username, int page, int size, String[] sort, MessageStatus messageStatus);
+    public List<Application> getAllApplicationsForUser(String username, int page, int size, String[] sort);
 
-    public List<Application> getAllApplicationsByPrefix(String username, int page, int size, String[] sort, MessageStatus messageStatus);
+    public void correctDraftApplication(Long id, String username, String newMessage);
 
-    public Application getApplication(Long id);
-
-  public void acceptApplication(Long id);
-
-    public void rejectApplication(Long id);
-
-    public void correctDraftApplication(Long id, String newMessage);
-
-    public void sendApplication(Long id);
-
-    public String messageForModerator(MessageStatus messageStatus);
-
-
+    public void sendApplication(Long id, String username);
 }

@@ -6,6 +6,7 @@ import org.example.MessageStatus;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
+
 @Entity
 public class Application implements Comparable<Application> {
     @Id
@@ -14,14 +15,11 @@ public class Application implements Comparable<Application> {
     private String message;
     @Enumerated(EnumType.STRING)
     private MessageStatus status;
-
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dateTime;
-
     private String username;
 
     public Application() {
-
     }
 
     public Application(String username, String message, MessageStatus status, LocalDateTime dateTime) {
@@ -31,15 +29,13 @@ public class Application implements Comparable<Application> {
         this.dateTime = dateTime;
     }
 
-
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getUsername() {
+        return username;
     }
-
 
     public String getMessage() {
         return message;
@@ -64,8 +60,6 @@ public class Application implements Comparable<Application> {
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
-
-
 
     @Override
     public int compareTo(Application application) {

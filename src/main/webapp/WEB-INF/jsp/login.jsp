@@ -18,7 +18,6 @@
              autofocus="true"/>
       <input name="password" type="password" placeholder="Password"/>
       <button type="submit">Log In</button>
-      <h4><a href="/registration">Registration</a></h4>
     </div>
   </form>
 </div>
