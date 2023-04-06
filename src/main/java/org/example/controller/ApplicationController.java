@@ -48,6 +48,7 @@ public class ApplicationController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    //отправлять заявки на рассмотрение оператору
     @PatchMapping(value = "/send/{id}")
     public ResponseEntity<Void> sendApplication(Authentication authentication, @PathVariable Long id, @RequestBody ApplicationCreationDTO applicationCreationDTO) {
         User user = (User) authentication.getPrincipal();

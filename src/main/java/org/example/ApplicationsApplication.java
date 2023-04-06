@@ -64,7 +64,6 @@ public class ApplicationsApplication  implements CommandLineRunner{
         User user4 = new User();
         HashSet<Role> roles4 = new HashSet<>();
         roles4.add(roleuser4);
-        roles4.add(roleuser4);
         user4.setUsername("new");
         user4.setRoles(roles4);
         user4.setId(4L);
@@ -75,7 +74,6 @@ public class ApplicationsApplication  implements CommandLineRunner{
         roleRepository.save(roleuser5);
         User user5 = new User();
         HashSet<Role> roles5 = new HashSet<>();
-        roles5.add(roleuser5);
         roles5.add(roleuser5);
         user5.setUsername("user2");
         user5.setRoles(roles5);
