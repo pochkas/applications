@@ -2,7 +2,6 @@ package org.example.service.implementation;
 
 import org.example.MessageStatus;
 import org.example.entity.Application;
-import org.example.entity.User;
 import org.example.exception.ApplicationException;
 import org.example.repository.ApplicationRepository;
 import org.example.repository.UserRepository;
@@ -16,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class ApplicationServiceImpl implements ApplicationService {
@@ -60,8 +58,7 @@ public class ApplicationServiceImpl implements ApplicationService {
         } else {
             orders.add(new Sort.Order(getSortDirection(sort[1]), sort[0]));
         }
-        List<Application> applications = applicationRepository.findAll(pr).get().collect(Collectors.toList());
-        return applications;
+        return applicationRepository.findByStatus(messageStatus, pr);
     }
 
     @Transactional
@@ -79,8 +76,8 @@ public class ApplicationServiceImpl implements ApplicationService {
         } else {
             orders.add(new Sort.Order(getSortDirection(sort[1]), sort[0]));
         }
-        List<Application> applications = applicationRepository.findAll(pr).get().collect(Collectors.toList());
-        return applications;
+        return applicationRepository.findByStatusAndUsername(username, messageStatus, pr);
+
     }
 
     public List<Application> getAllApplicationsByPrefix(String prefix, int page, int size, String[] sort, MessageStatus messageStatus) {
@@ -97,12 +94,8 @@ public class ApplicationServiceImpl implements ApplicationService {
             orders.add(new Sort.Order(getSortDirection(sort[1]), sort[0]));
         }
 
-        List<User> users = userRepository.findByUsernameStartsWith(prefix);
-        List<Application> allApplications = new ArrayList<>();
-        for (User u : users) {
-            allApplications.addAll(applicationRepository.findByUsernameAndStatus(u.getUsername(), MessageStatus.SENT));
-        }
-        return allApplications;
+        return applicationRepository.findByStatusAndUsernameStartsWith(prefix, MessageStatus.SENT, pr);
+
     }
 
     @Override
@@ -113,7 +106,7 @@ public class ApplicationServiceImpl implements ApplicationService {
         }
         return application.get();
     }
-
+    @Override
     public void acceptApplication(Long id) {
         Optional<Application> application = applicationRepository.findById(id);
 
@@ -125,7 +118,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 
         }
     }
-
+    @Override
     public void rejectApplication(Long id) {
         Optional<Application> application = applicationRepository.findById(id);
 
@@ -136,7 +129,7 @@ public class ApplicationServiceImpl implements ApplicationService {
             applicationRepository.save(application.get());
         }
     }
-
+    @Override
     public void correctDraftApplication(Long id, String newMessage) {
         Optional<Application> application = applicationRepository.findById(id);
         if (!application.isPresent()) {
@@ -150,7 +143,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 
     }
 
-
+    @Override
     public void sendApplication(Long id) {
 
         Application application = applicationRepository.getOne(id);
@@ -158,6 +151,20 @@ public class ApplicationServiceImpl implements ApplicationService {
         applicationRepository.save(application);
 
     }
+
+    @Override
+    public String messageForModerator(MessageStatus messageStatus) {
+        Application application = applicationRepository.findApplicationByStatus(messageStatus);
+        char[] array = application.getMessage().toCharArray();
+        StringBuilder builder = new StringBuilder();
+        for (char c : array) {
+            builder.append(c).append("-");
+        }
+        application.setMessage(builder.toString());
+        applicationRepository.save(application);
+        return builder.toString();
+    }
+
 
 
 }

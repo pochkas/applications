@@ -25,6 +25,7 @@ public interface ApplicationService {
 
     public void sendApplication(Long id);
 
+    public String messageForModerator(MessageStatus messageStatus);
 
 
 }

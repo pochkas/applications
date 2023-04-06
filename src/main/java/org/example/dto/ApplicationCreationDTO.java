@@ -1,15 +1,8 @@
 package org.example.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import org.example.MessageStatus;
 import org.example.entity.Application;
-import org.example.entity.User;
-import sun.util.resources.LocaleData;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import java.time.LocalDateTime;
 import java.util.Objects;
 

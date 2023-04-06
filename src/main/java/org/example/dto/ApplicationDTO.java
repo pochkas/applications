@@ -1,7 +1,5 @@
 package org.example.dto;
 
-import org.example.MessageStatus;
-
 
 import java.time.LocalDateTime;
 import java.util.Objects;
