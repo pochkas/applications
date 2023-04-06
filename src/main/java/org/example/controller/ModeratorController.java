@@ -5,7 +5,7 @@ import org.example.entity.Application;
 import org.example.exception.ApplicationException;
 import org.example.service.ApplicationService;
 import org.example.service.ModeratorService;
-import org.example.service.implementation.UserServiceImpl;
+import org.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,11 +16,6 @@ import java.util.List;
 @RequestMapping("/moderator")
 @PreAuthorize("hasAuthority('MODERATOR')")
 public class ModeratorController {
-
-    @Autowired
-    private UserServiceImpl userServiceImpl;
-    @Autowired
-    private ApplicationService applicationService;
     @Autowired
     private ModeratorService moderatorService;
 

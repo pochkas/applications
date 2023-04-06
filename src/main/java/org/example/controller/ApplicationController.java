@@ -1,12 +1,11 @@
 package org.example.controller;
 
-import org.example.MessageStatus;
 import org.example.dto.ApplicationCreationDTO;
 import org.example.entity.Application;
 import org.example.entity.User;
 import org.example.exception.ApplicationException;
 import org.example.service.ApplicationService;
-import org.example.service.implementation.UserServiceImpl;
+import org.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +23,6 @@ public class ApplicationController {
 
     @Autowired
     private ApplicationService applicationService;
-    @Autowired
-    private UserServiceImpl userServiceImpl;
 
     // создавать заявки
     @PostMapping(value = "/")
