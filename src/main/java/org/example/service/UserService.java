@@ -14,6 +14,10 @@ public interface UserService extends UserDetailsService {
 
     public UserDetails loadUserByUsername(String username);
 
+    public User getByUsername(String username);
+
+    public List<User> getByStartName(String prefix);
+
     public List<User> getAll();
 
     public void updatePermission(String username);

@@ -30,7 +30,7 @@ public class ApplicationServiceImpl implements ApplicationService, PageCreation 
         return applicationRepository.save(application);
     }
 
-    @Transactional
+
     @Override
     public List<Application> getAllApplicationsForUser(String username, int page, int size, String[] sort) {
         PageRequest pr = pageRequest(page, size, sort);

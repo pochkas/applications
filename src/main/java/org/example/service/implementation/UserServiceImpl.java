@@ -21,13 +21,12 @@ import java.util.stream.Collectors;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @PersistenceContext
-    private EntityManager em;
     @Autowired
     UserRepository userRepository;
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Override
     public boolean saveUser(User user) {
         User userFromDB = userRepository.findByUsername(user.getUsername());
         if (userFromDB != null) {
@@ -47,22 +46,26 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    @Override
     public List<User> getAll() {
         return userRepository.findAll();
     }
 
-    public User getByName(String username) {
+    @Override
+    public User getByUsername(String username) {
         User user = userRepository.findByUsername(username);
-        if(user==null){
+        if (user == null) {
             throw new ApplicationException("User was not found!");
         }
         return userRepository.findByUsername(username);
     }
 
+    @Override
     public List<User> getByStartName(String prefix) {
         return userRepository.findByUsernameStartsWith(prefix);
     }
 
+    @Override
     public void updatePermission(String username) {
         User user = userRepository.findByUsername(username);
         if (user == null) {
