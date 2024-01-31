@@ -1,5 +1,7 @@
 # System of registration and processing of user requests. 
 
+Stack: Spring Boot, Spring Security, Hibernate, PostgreSQL.
+
 The user can submit applications to the operator for consideration through the system. 
 The operator can view user requests and accept or reject them. 
 The administrator manages access rights.
@@ -33,6 +35,6 @@ MODERATOR
 * Patch http://localhost:8080/moderator/accept/{applicationId} - accept applications;
 * Patch http://localhost:8080/moderator/reject/{applicationId} - reject applications;
 
-Stack: Spring Boot, Spring Security, Hibernate, PostgreSQL.
+
 
 
