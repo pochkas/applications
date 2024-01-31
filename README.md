@@ -1,4 +1,4 @@
-#H System of registration and processing of user requests. 
+# System of registration and processing of user requests. 
 
 The user can submit applications to the operator for consideration through the system. 
 The operator can view user requests and accept or reject them. 
